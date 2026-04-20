@@ -3,11 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/Gaffar08/Jenkins_project.git'
-            }
-        }
 
         stage('Build') {
             steps {
