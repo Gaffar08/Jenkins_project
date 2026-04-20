@@ -1,15 +1,17 @@
 pipeline {
     agent any
 
-    tools {
-        maven 'Maven'
-    }
-
     stages {
+
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Gaffar08/Jenkins_project.git'
+            }
+        }
 
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn clean package'
             }
         }
 
@@ -19,9 +21,9 @@ pipeline {
             }
         }
 
-        stage('Package') {
+        stage('Archive') {
             steps {
-                sh 'mvn package'
+                archiveArtifacts artifacts: '**/target/*.jar'
             }
         }
     }
